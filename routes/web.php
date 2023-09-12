@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CharactersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::get('/home', function() {
 Route::get('/profile/{user}', function() {
     return view('profile');
 });
+
+Route::get('/character',[CharactersController::class, 'index']);
