@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CharactersController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::get('/profile/{user}', function() {
 });
 
 Route::get('/character',[CharactersController::class, 'index']);
+
+Route::get('/book',[BookController::class, 'index']);
