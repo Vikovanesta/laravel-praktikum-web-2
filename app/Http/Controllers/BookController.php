@@ -25,7 +25,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -33,7 +33,26 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // Change date format to 'd-m-Y'
+        $request->merge([
+            'date_published' => date('d-m-Y', $request->date_published)
+        ]);
+
+
+        $data = $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required',
+            'description' => 'nullable',
+            'publisher' => 'nullable',
+            'date_published' => ['nullable', 'date'],
+            'price' => 'required',
+            'page_count' => 'nullable',
+            'cover_url' => 'nullable',
+        ]);
+
+        Book::create($data);
+
+        return redirect()->route('books.index');
     }
 
     /**
@@ -49,7 +68,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $book = Book::find($book->id);
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -57,7 +77,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book = Book::find($book->id);
+        $book->update($request->all());
+        return redirect()->route('books.index');
     }
 
     /**
@@ -65,6 +87,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book = Book::find($book->id);
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }

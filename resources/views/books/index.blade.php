@@ -7,6 +7,11 @@
     
     <h3 class="text-center">total: {{ $bookCount }}</h3>
     <h3 class="text-center">price total: {{ "Rp ".number_format($priceSum, 2, ',', '.') }}</h3>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <a href="/book/create" class="btn btn-primary">Add New Book</a>
+        </div>
+    </div>
 
     <table class="table table-striped table-hover mt-5">
         <thead class="table-dark">
@@ -17,6 +22,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Date Published</th>
                 <th scope="col">Publisher</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +34,14 @@
                     <td>{{ "Rp ".number_format($book->price, 2, ',', '.') }}</td>
                     <td>{{ $book->date_published }}</td>
                     <td>{{ $book->publisher }}</td>
+                    <td>
+                        <a href="{{ route('books.edit', $book->id) }}" class="btn btn-success">Edit</a>
+                        <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

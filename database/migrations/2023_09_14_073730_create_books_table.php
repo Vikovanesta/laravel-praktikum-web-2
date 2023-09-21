@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('author');
-            $table->text('description');
-            $table->string('publisher');
-            $table->date('date_published');
+            $table->string('author')->nullable()->default('Unknown');
+            $table->text('description')->nullable()->default('No description available.');
+            $table->string('publisher')->nullable()->default('Unknown');
+            $table->date('date_published')->nullable();
             $table->integer('price');
-            $table->integer('page_count');
-            $table->string('cover_url');
+            $table->integer('page_count')->nullable()->default(0);
+            $table->string('cover_url')->nullable()->default('https://via.placeholder.com/150');
             $table->timestamps();
         });
     }
