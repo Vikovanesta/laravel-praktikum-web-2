@@ -17,7 +17,7 @@ class BookController extends Controller
         $bookCount = Book::count();
         $priceSum = Book::sum('price');
 
-        return view('book', compact('books', 'no', 'bookCount', 'priceSum'));
+        return view('books.index', compact('books', 'no', 'bookCount', 'priceSum'));
     }
 
     /**
