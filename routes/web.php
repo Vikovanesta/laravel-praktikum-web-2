@@ -26,15 +26,12 @@ Route::get('/home', function() {
     ]);
 })->name('home');
 
-Route::get('/profile/{user}', function() {
-    return view('profile');
-});
-
 Route::get('/character',[CharactersController::class, 'index']);
 
-Route::get('/book',[BookController::class, 'index'])->name('books.index');
 Route::get('/book/create',[BookController::class, 'create'])->name('books.create');
 Route::post('/book/post',[BookController::class, 'store'])->name('books.store');
+Route::get('/book',[BookController::class, 'index'])->name('books.index');
+Route::get('/book/{book}',[BookController::class, 'show'])->name('books.show');
 Route::delete('/book/{book}/delete',[BookController::class, 'destroy'])->name('books.destroy');
 Route::get('/book/{book}/edit',[BookController::class, 'edit'])->name('books.edit');
 Route::patch('/book/{book}/update',[BookController::class, 'update'])->name('books.update');

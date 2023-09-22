@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date_published')->nullable()->default('Unknown');
             $table->integer('price');
             $table->integer('page_count')->nullable()->default('Unknown');
-            $table->string('cover_url')->nullable()->default('https://via.placeholder.com/200x250');
+            $table->string('cover_url')->nullable()->default('https://via.placeholder.com/250x375.png?text=No+Cover');
             $table->timestamps();
         });
     }

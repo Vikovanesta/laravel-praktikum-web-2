@@ -23,7 +23,7 @@ class BookFactory extends Factory
             'date_published' => $this->faker->date('d-m-Y'),
             'publisher' => $this->faker->company(), 
             'page_count' => $this->faker->numberBetween(100, 1000),
-            'cover_url' => $this->faker->imageUrl(),
+            'cover_url' => $this->faker->imageUrl(250,375),
             'price' => $this->faker->randomNumber(6, false),
         ];
     }

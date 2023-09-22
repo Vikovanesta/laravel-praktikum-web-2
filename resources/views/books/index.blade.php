@@ -9,7 +9,7 @@
     <h3 class="text-center">price total: {{ "Rp ".number_format($priceSum, 2, ',', '.') }}</h3>
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <a href="/book/create" class="btn btn-primary">Add New Book</a>
+            <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
         </div>
     </div>
 
@@ -37,6 +37,7 @@
                     <td>{{ $book->publisher }}</td>
                     <td>{{ $book->page_count }}</td>
                     <td>
+                        <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Detail</a>
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-success">Edit</a>
                         <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="d-inline">
                             @csrf
