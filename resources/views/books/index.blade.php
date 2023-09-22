@@ -22,6 +22,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Date Published</th>
                 <th scope="col">Publisher</th>
+                <th scope="col">Page Count</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -34,12 +35,13 @@
                     <td>{{ "Rp ".number_format($book->price, 2, ',', '.') }}</td>
                     <td>{{ $book->date_published }}</td>
                     <td>{{ $book->publisher }}</td>
+                    <td>{{ $book->page_count }}</td>
                     <td>
                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-success">Edit</a>
                         <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
                     </td>
                 </tr>

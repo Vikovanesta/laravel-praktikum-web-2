@@ -11,18 +11,16 @@
             <div class="col-8 offset-2">
 
                 <div class="row">
-                    <h1>Edit Book</h1>
+                    <h1 class="text-center">Edit Book</h1>
                 </div>
 
                 <div class="row mb-3">
                     <label for="title" class="col-md-4 col-form-label">Title</label>
 
-                    <input id="title" 
-                        name="title"
-                        type="string" 
+                    <input id="title" name="title" type="text" 
                         class="form-control @error('title') is-invalid @enderror" 
                         value="{{ $book->title }}" 
-                        autocomplete="title" autofocus>
+                        autofocus>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -36,7 +34,7 @@
 
                     <input id="author" 
                         name="author"
-                        type="string" 
+                        type="text" 
                         class="form-control @error('author') is-invalid @enderror" 
                         value="{{ $book->author }}" 
                         autocomplete="author" autofocus>
@@ -53,7 +51,7 @@
 
                     <input id="publisher" 
                         name="publisher"
-                        type="string" 
+                        type="text" 
                         class="form-control @error('publisher') is-invalid @enderror" 
                         value="{{ $book->publisher }}" 
                         autocomplete="publisher" autofocus>
@@ -66,16 +64,16 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="publication_date" class="col-md-4 col-form-label">Publication Date</label>
+                    <label for="date_published" class="col-md-4 col-form-label">Publication Date</label>
 
-                    <input id="publication_date" 
-                        name="publication_date"
+                    <input id="date_published" 
+                        name="date_published"
                         type="date" 
-                        class="form-control @error('publication_date') is-invalid @enderror" 
+                        class="form-control @error('date_published') is-invalid @enderror" 
                         value="{{ $book->date_published }}" 
-                        autocomplete="publication_date" autofocus>
+                        autocomplete="date_published" autofocus>
 
-                    @error('publication_date')
+                    @error('date_published')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -87,7 +85,7 @@
 
                     <input id="description" 
                         name="description"
-                        type="string" 
+                        type="text" 
                         class="form-control @error('description') is-invalid @enderror" 
                         value="{{ $book->description }}" 
                         autocomplete="description" autofocus>
@@ -104,7 +102,7 @@
 
                     <input id="price" 
                         name="price"
-                        type="integer" 
+                        type="number" 
                         class="form-control @error('price') is-invalid @enderror" 
                         value="{{ $book->price }}" 
                         autocomplete="price" autofocus>
@@ -117,16 +115,16 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="total_page" class="col-md-4 col-form-label">Total Page</label>
+                    <label for="page_count" class="col-md-4 col-form-label">Total Page</label>
 
-                    <input id="total_page" 
-                        name="total_page"
-                        type="integer" 
-                        class="form-control @error('total_page') is-invalid @enderror" 
+                    <input id="page_count" 
+                        name="page_count"
+                        type="number" 
+                        class="form-control @error('page_count') is-invalid @enderror" 
                         value="{{ $book->page_count }}" 
-                        autocomplete="total_page" autofocus>
+                        autocomplete="page_count" autofocus>
 
-                    @error('total_page')
+                    @error('page_count')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -145,13 +143,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
-                        <button class="btn btn-primary">Update Book</button>
-                    </div>
-                    <div class="col-6">
-                        <a href="/book" class="btn btn-primary">Cancel</a>
+                    <div class="col-12">
+                        <button class="btn btn-success">Update Book</button>
+                        <a href="/book" class="btn btn-danger">Cancel</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </form>

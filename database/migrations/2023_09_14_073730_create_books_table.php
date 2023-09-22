@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('author')->nullable()->default('Unknown');
             $table->text('description')->nullable()->default('No description available.');
             $table->string('publisher')->nullable()->default('Unknown');
-            $table->date('date_published')->nullable();
+            $table->date('date_published')->nullable()->default('Unknown');
             $table->integer('price');
-            $table->integer('page_count')->nullable()->default(0);
-            $table->string('cover_url')->nullable()->default('https://via.placeholder.com/150');
+            $table->integer('page_count')->nullable()->default('Unknown');
+            $table->string('cover_url')->nullable()->default('https://via.placeholder.com/200x250');
             $table->timestamps();
         });
     }

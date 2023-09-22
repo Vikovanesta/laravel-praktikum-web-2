@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
@@ -33,21 +34,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-       // Change date format to 'd-m-Y'
+        // Change date format to 'd-m-Y'
         $request->merge([
-            'date_published' => date('d-m-Y', $request->date_published)
+            'date_published' => date('d-m-Y', strtotime($request->date_published))
         ]);
-
 
         $data = $request->validate([
             'title' => 'required|max:255',
             'author' => 'required',
-            'description' => 'nullable',
-            'publisher' => 'nullable',
-            'date_published' => ['nullable', 'date'],
-            'price' => 'required',
-            'page_count' => 'nullable',
-            'cover_url' => 'nullable',
+            'date_published' => [Rule::excludeIf($request->date_published == '01-01-1970'),'date'],
+            'publisher' => Rule::excludeIf($request->publisher == null),
+            'description' => Rule::excludeIf($request->description == null),
+            'price' => 'required|integer',
+            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'],
+            'cover_url' => Rule::excludeIf($request->cover_url == null),
         ]);
 
         Book::create($data);
@@ -78,7 +78,23 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $book = Book::find($book->id);
-        $book->update($request->all());
+
+        $request->merge([
+            'date_published' => date('d-m-Y', strtotime($request->date_published))
+        ]);
+
+        $data = $request->validate([
+            'title' => 'required|max:255',
+            'author' => 'required',
+            'date_published' => [Rule::excludeIf($request->date_published == '01-01-1970'),'date'],
+            'publisher' => Rule::excludeIf($request->publisher == null),
+            'description' => Rule::excludeIf($request->description == null),
+            'price' => 'required|integer',
+            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'],
+            'cover_url' => Rule::excludeIf($request->cover_url == null),
+        ]);
+
+        $book->update($data);
         return redirect()->route('books.index');
     }
 

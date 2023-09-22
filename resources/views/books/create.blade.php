@@ -10,17 +10,15 @@
             <div class="col-8 offset-2">
 
                 <div class="row">
-                    <h1>Add New Book</h1>
+                    <h1 class="text-center">Add New Book</h1>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <label for="title" class="col-md-4 col-form-label">Title</label>
 
-                    <input id="title" 
-                        name="title"
-                        type="string" 
+                    <input id="title" name="title" type="text" 
                         class="form-control @error('title') is-invalid @enderror" 
-                        required autocomplete="title" autofocus>
+                        required autofocus>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -29,119 +27,101 @@
                     @enderror
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <label for="author" class="col-md-4 col-form-label">Author</label>
 
-                    <input id="author" 
-                        name="author"
-                        type="string" 
+                    <input id="author" name="author" type="text" 
                         class="form-control @error('author') is-invalid @enderror" 
-                        required autocomplete="author" autofocus>
+                        required>
 
                     @error('author')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <label for="publisher" class="col-md-4 col-form-label">Publisher</label>
 
-                    <input id="publisher" 
-                        name="publisher"
-                        type="string" 
-                        class="form-control @error('publisher') is-invalid @enderror" 
-                        autocomplete="publisher" autofocus>
+                    <input id="publisher" name="publisher" type="text" 
+                        class="form-control @error('publisher') is-invalid @enderror">
 
                     @error('publisher')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
-                <div class="row mb-3">
-                    <label for="publication_date" class="col-md-4 col-form-label">Publication Date</label>
+                <div class="row mb-2">
+                    <label for="date_published" class="col-md-4 col-form-label">Publication Date</label>
 
-                    <input id="publication_date" 
-                        name="publication_date"
-                        type="date" 
-                        class="form-control @error('publication_date') is-invalid @enderror" 
-                        autocomplete="publication_date" autofocus>
+                    <input id="date_published" name="date_published" type="date"
+                        class="form-control @error('date_published') is-invalid @enderror">
 
-                    @error('publication_date')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                    @error('date_published')
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <label for="description" class="col-md-4 col-form-label">Description</label>
 
-                    <input id="description" 
-                        name="description"
-                        type="string" 
-                        class="form-control @error('description') is-invalid @enderror" 
-                        autocomplete="description" autofocus>
+                    <input id="description" name="description" type="text" 
+                        class="form-control @error('description') is-invalid @enderror">
 
                     @error('description')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <label for="price" class="col-md-4 col-form-label">Price</label>
 
-                    <input id="price" 
-                        name="price"
-                        type="integer" 
+                    <input id="price" name="price" type="number" 
                         class="form-control @error('price') is-invalid @enderror" 
-                        required autocomplete="price" autofocus>
+                        required>
 
                     @error('price')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
-                <div class="row mb-3">
-                    <label for="total_page" class="col-md-4 col-form-label">Total Page</label>
+                <div class="row mb-2">
+                    <label for="page_count" class="col-md-4 col-form-label">Total Page</label>
 
-                    <input id="total_page" 
-                        name="total_page"
-                        type="integer" 
-                        class="form-control @error('total_page') is-invalid @enderror" 
-                        autocomplete="total_page" autofocus>
+                    <input id="page_count" name="page_count" type="number" 
+                        class="form-control @error('page_count') is-invalid @enderror">
 
-                    @error('total_page')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                    @error('page_count')
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
 
-                <div class="row mb-3">
+                <div class="row mb-2">
                     <label for="image" class="col-md-4 col-form-label">Book's Cover</label>
                     <input type="file" class="form-control-file" id="image" name="image">
                     @error('image')
-                        <!-- <span class="invalid-feedback" role="alert"> -->
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        <!-- </span> -->
+                        </span>
                     @enderror
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
-                        <button class="btn btn-primary">Add New Book</button>
-                    </div>
-                    <div class="col-6">
-                        <a href="/book" class="btn btn-primary">Cancel</a>
+                    <div class="col-12">
+                        <button class="btn btn-success">Add New Book</button>
+                        <a href="/book" class="btn btn-danger">Cancel</a>
                     </div>
                 </div>
             </div>
