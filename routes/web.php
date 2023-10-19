@@ -16,7 +16,7 @@ use App\Http\Controllers\BookController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/books');
 });
 
 Route::get('/home', function() {
@@ -28,10 +28,12 @@ Route::get('/home', function() {
 
 Route::get('/character',[CharactersController::class, 'index']);
 
-Route::get('/book/create',[BookController::class, 'create'])->name('books.create');
-Route::post('/book/post',[BookController::class, 'store'])->name('books.store');
-Route::get('/book',[BookController::class, 'index'])->name('books.index');
-Route::get('/book/{book}',[BookController::class, 'show'])->name('books.show');
-Route::delete('/book/{book}/delete',[BookController::class, 'destroy'])->name('books.destroy');
-Route::get('/book/{book}/edit',[BookController::class, 'edit'])->name('books.edit');
-Route::patch('/book/{book}/update',[BookController::class, 'update'])->name('books.update');
+Route::resource('books', BookController::class);
+
+// Route::get('/books/create',[BookController::class, 'create'])->name('books.create');
+// Route::post('/books/post',[BookController::class, 'store'])->name('books.store');
+// Route::get('/books',[BookController::class, 'index'])->name('books.index');
+// Route::get('/books/{book}',[BookController::class, 'show'])->name('books.show');
+// Route::delete('/books/{book}/delete',[BookController::class, 'destroy'])->name('books.destroy');
+// Route::get('/books/{book}/edit',[BookController::class, 'edit'])->name('books.edit');
+// Route::patch('/books/{book}/update',[BookController::class, 'update'])->name('books.update');

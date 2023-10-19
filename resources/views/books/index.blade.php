@@ -33,7 +33,7 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->author }}</td>
                     <td>{{ "Rp ".number_format($book->price, 2, ',', '.') }}</td>
-                    <td>{{ $book->date_published }}</td>
+                    <td>{{ $book->date_published->format('d/m/Y') }}</td>
                     <td>{{ $book->publisher }}</td>
                     <td>{{ $book->page_count }}</td>
                     <td>

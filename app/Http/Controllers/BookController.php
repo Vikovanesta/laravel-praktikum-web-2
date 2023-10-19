@@ -34,20 +34,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // Change date format to 'd-m-Y'
-        $request->merge([
-            'date_published' => date('d-m-Y', strtotime($request->date_published))
-        ]);
 
         $data = $request->validate([
             'title' => 'required|max:255',
             'author' => 'required',
-            'date_published' => [Rule::excludeIf($request->date_published == '01-01-1970'),'date'],
-            'publisher' => Rule::excludeIf($request->publisher == null),
-            'description' => Rule::excludeIf($request->description == null),
-            'price' => 'required|integer',
-            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'],
-            'cover_url' => Rule::excludeIf($request->cover_url == null),
+            'date_published' => 'required|date',
+            'publisher' => [Rule::excludeIf($request->publisher == null), 'string'],
+            'description' => [Rule::excludeIf($request->description == null), 'string'],
+            'price' => 'required|integer|min:0',
+            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'. 'min:0'],
+            'cover_url' => [Rule::excludeIf($request->cover_url == null)],
         ]);
 
         Book::create($data);
@@ -87,12 +83,12 @@ class BookController extends Controller
         $data = $request->validate([
             'title' => 'required|max:255',
             'author' => 'required',
-            'date_published' => [Rule::excludeIf($request->date_published == '01-01-1970'),'date'],
-            'publisher' => Rule::excludeIf($request->publisher == null),
-            'description' => Rule::excludeIf($request->description == null),
-            'price' => 'required|integer',
-            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'],
-            'cover_url' => Rule::excludeIf($request->cover_url == null),
+            'date_published' => 'required|date',
+            'publisher' => [Rule::excludeIf($request->publisher == null), 'string'],
+            'description' => [Rule::excludeIf($request->description == null), 'string'],
+            'price' => 'required|integer|min:0',
+            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'. 'min:0'],
+            'cover_url' => [Rule::excludeIf($request->cover_url == null)],
         ]);
 
         $book->update($data);

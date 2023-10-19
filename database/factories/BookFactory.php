@@ -20,7 +20,7 @@ class BookFactory extends Factory
             'title' => $this->faker->realText(30),
             'author' => $this->faker->name(),
             'description' => $this->faker->realText(200),
-            'date_published' => $this->faker->date('d-m-Y'),
+            'date_published' => $this->faker->date(),
             'publisher' => $this->faker->company(), 
             'page_count' => $this->faker->numberBetween(100, 1000),
             'cover_url' => $this->faker->imageUrl(250,375),

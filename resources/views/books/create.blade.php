@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <form action="/book/post" enctype="multipart/form-data" method="post">
+    <form action="/books" enctype="multipart/form-data" method="post">
         @csrf
 
         <div class="row">
