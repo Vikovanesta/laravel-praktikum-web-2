@@ -18,7 +18,7 @@
 
                     <input id="title" name="title" type="text" 
                         class="form-control @error('title') is-invalid @enderror" 
-                        required autofocus>
+                        autofocus>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -31,8 +31,7 @@
                     <label for="author" class="col-md-4 col-form-label">Author</label>
 
                     <input id="author" name="author" type="text" 
-                        class="form-control @error('author') is-invalid @enderror" 
-                        required>
+                        class="form-control @error('author') is-invalid @enderror">
 
                     @error('author')
                         <span class="invalid-feedback" role="alert">
@@ -84,8 +83,7 @@
                     <label for="price" class="col-md-4 col-form-label">Price</label>
 
                     <input id="price" name="price" type="number" 
-                        class="form-control @error('price') is-invalid @enderror" 
-                        required>
+                        class="form-control @error('price') is-invalid @enderror">
 
                     @error('price')
                         <span class="invalid-feedback" role="alert">
