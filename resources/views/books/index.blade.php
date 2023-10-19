@@ -11,6 +11,11 @@
         <div class="col-12 d-flex justify-content-center">
             <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
         </div>
+        @if (Session::has('success_message'))
+            <div class="alert alert-success text-center mt-3">{{ Session::get('success_message') }}</div>
+        @elseif (Session::has('delete_message'))
+            <div class="alert alert-danger text-center mt-3">{{ Session::get('delete_message') }}</div>
+        @endif
     </div>
 
     <table class="table table-striped table-hover mt-5">

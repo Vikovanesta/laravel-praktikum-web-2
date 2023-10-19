@@ -121,7 +121,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button class="btn btn-success">Add New Book</button>
-                        <a href="/book" class="btn btn-danger">Cancel</a>
+                        <a href="{{ route('books.index') }}" class="btn btn-danger">Cancel</a>
                     </div>
                 </div>
             </div>

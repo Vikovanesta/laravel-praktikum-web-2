@@ -70,7 +70,7 @@
                         name="date_published"
                         type="date" 
                         class="form-control @error('date_published') is-invalid @enderror" 
-                        value="{{ $book->date_published }}" 
+                        value="{{ $book->date_published->format('Y-m-d') }}" 
                         autocomplete="date_published" autofocus>
 
                     @error('date_published')
@@ -145,7 +145,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button class="btn btn-success">Update Book</button>
-                        <a href="/book" class="btn btn-danger">Cancel</a>
+                        <a href={{ route('books.index') }} class="btn btn-danger">Cancel</a>
                     </div>
                 </div>
 

@@ -42,13 +42,13 @@ class BookController extends Controller
             'publisher' => [Rule::excludeIf($request->publisher == null), 'string'],
             'description' => [Rule::excludeIf($request->description == null), 'string'],
             'price' => 'required|integer|min:0',
-            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'. 'min:0'],
+            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer', 'min:0'],
             'cover_url' => [Rule::excludeIf($request->cover_url == null)],
         ]);
 
         Book::create($data);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success_message', 'Book has been added!');
     }
 
     /**
@@ -76,10 +76,6 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
 
-        $request->merge([
-            'date_published' => date('d-m-Y', strtotime($request->date_published))
-        ]);
-
         $data = $request->validate([
             'title' => 'required|max:255',
             'author' => 'required',
@@ -87,12 +83,12 @@ class BookController extends Controller
             'publisher' => [Rule::excludeIf($request->publisher == null), 'string'],
             'description' => [Rule::excludeIf($request->description == null), 'string'],
             'price' => 'required|integer|min:0',
-            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer'. 'min:0'],
+            'page_count' => [Rule::excludeIf($request->page_count == null), 'integer', 'min:0'],
             'cover_url' => [Rule::excludeIf($request->cover_url == null)],
         ]);
 
         $book->update($data);
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success_message', 'Book has been updated!');
     }
 
     /**
@@ -102,6 +98,6 @@ class BookController extends Controller
     {
         $book = Book::find($book->id);
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('delete_message', 'Book has been deleted!');
     }
 }
