@@ -22,6 +22,23 @@ class BookController extends Controller
         return view('books.index', compact('books', 'no', 'bookCount', 'priceSum'));
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $pageSize = 10;
+        $books = Book::where('title', 'like', '%'.$search.'%')
+            ->orWhere('author', 'like', '%'.$search.'%')
+            ->orderBy('id', 'desc')
+            ->simplePaginate($pageSize);
+        $no = $pageSize * ($books->currentPage() - 1);
+        $bookCount = Book::where('title', 'like', '%'.$search.'%')
+            ->orWhere('author', 'like', '%'.$search.'%')
+            ->count();
+        $priceSum = Book::sum('price');
+
+        return view('books.search', compact('books', 'no', 'bookCount', 'priceSum', 'search'));
+    }
+    
     /**
      * Show the form for creating a new resource.
      */

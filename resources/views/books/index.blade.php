@@ -18,7 +18,16 @@
         @endif
     </div>
 
-    <table class="table table-striped table-hover mt-5">
+    <form action="{{ route('books.search') }}" method="get"> 
+        @csrf
+        <input type="text" 
+               name="search" 
+               class="form-control d-inline mt-3" 
+               placeholder="Search ..." 
+               style="width: 30%;">
+    </form>
+
+    <table class="table table-striped table-hover mt-2">
         <thead class="table-dark">
             <tr>
                 <th scope="col">No</th>

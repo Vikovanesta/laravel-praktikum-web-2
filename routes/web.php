@@ -28,12 +28,5 @@ Route::get('/home', function() {
 
 Route::get('/character',[CharactersController::class, 'index']);
 
+Route::get('/books/search', [BookController::class, 'search'])->name('books.search');
 Route::resource('books', BookController::class);
-
-// Route::get('/books/create',[BookController::class, 'create'])->name('books.create');
-// Route::post('/books/post',[BookController::class, 'store'])->name('books.store');
-// Route::get('/books',[BookController::class, 'index'])->name('books.index');
-// Route::get('/books/{book}',[BookController::class, 'show'])->name('books.show');
-// Route::delete('/books/{book}/delete',[BookController::class, 'destroy'])->name('books.destroy');
-// Route::get('/books/{book}/edit',[BookController::class, 'edit'])->name('books.edit');
-// Route::patch('/books/{book}/update',[BookController::class, 'update'])->name('books.update');
