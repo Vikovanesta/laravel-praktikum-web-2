@@ -13,8 +13,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all()->sortByDesc('id');
-        $no = 0;
+        $pageSize = 10;
+        $books = Book::orderBy('id', 'desc')->simplePaginate($pageSize);
+        $no = $pageSize * ($books->currentPage() - 1);
         $bookCount = Book::count();
         $priceSum = Book::sum('price');
 
