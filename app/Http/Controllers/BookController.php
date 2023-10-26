@@ -14,7 +14,7 @@ class BookController extends Controller
     public function index()
     {
         $pageSize = 10;
-        $books = Book::orderBy('id', 'desc')->simplePaginate($pageSize);
+        $books = Book::orderBy('id', 'desc')->paginate($pageSize);
         $no = $pageSize * ($books->currentPage() - 1);
         $bookCount = Book::count();
         $priceSum = Book::sum('price');
@@ -29,7 +29,7 @@ class BookController extends Controller
         $books = Book::where('title', 'like', '%'.$search.'%')
             ->orWhere('author', 'like', '%'.$search.'%')
             ->orderBy('id', 'desc')
-            ->simplePaginate($pageSize);
+            ->paginate($pageSize);
         $no = $pageSize * ($books->currentPage() - 1);
         $bookCount = Book::where('title', 'like', '%'.$search.'%')
             ->orWhere('author', 'like', '%'.$search.'%')

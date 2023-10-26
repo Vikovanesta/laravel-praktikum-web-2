@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 
 <div class="container">
     <form action="/books" enctype="multipart/form-data" method="post">
@@ -127,5 +125,4 @@
     </form>
 </div>
 
-@endsection
-
+</x-app-layout>
