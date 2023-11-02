@@ -11,7 +11,7 @@
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $book->title }}</h2>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $book->description }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Author: {{ $book->author }}</p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Date Published: {{ $book->date_published }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Date Published: {{ $book->date_published->format('d/m/Y') }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Publisher: {{ $book->publisher }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Page Count: {{ $book->page_count }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Price: {{ "Rp ".number_format($book->price, 2, ',', '.') }}</p>

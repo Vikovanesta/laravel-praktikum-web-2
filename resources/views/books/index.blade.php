@@ -6,14 +6,16 @@
         
         <h3 class="text-center text-3xl dark:text-white">total: {{ $bookCount }}</h3>
         <h3 class="text-center text-3xl dark:text-white">price total: {{ "Rp ".number_format($priceSum, 2, ',', '.') }}</h3>
-        <div class="flex justify-center">
-            <div class="my-4">
+        <div class="flex flex-col justify-center items-center">
+            <div class="my-4 self-center">
                 <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
             </div>
             @if (Session::has('success_message'))
-                <div class="alert alert-success text-center mt-3">{{ Session::get('success_message') }}</div>
+                <div class="alert alert-success text-center mt-3 w-fit">{{ Session::get('success_message') }}</div>
             @elseif (Session::has('delete_message'))
-                <div class="alert alert-danger text-center mt-3">{{ Session::get('delete_message') }}</div>
+                <div class="alert alert-error text-center mt-3 w-fit">{{ Session::get('delete_message') }}</div>
+            @elseif (Session::has('error'))
+                <div class="alert alert-error text-center mt-3 w-fit">{{ Session::get('error') }}</div>
             @endif
         </div>
     
