@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('book_id')->constrained()->cascadeOnDelete();
             $table->string('name');
-            $table->text('description');
-            $table->string('image');
+            $table->text('description')->nullable();
+            $table->string('gallery_seo')->nullable();
+            $table->string('image_url');
             $table->timestamps();
         });
     }

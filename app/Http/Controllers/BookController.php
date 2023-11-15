@@ -125,6 +125,21 @@ class BookController extends Controller
             ]);
         }
 
+        if(isset($validated['gallery'])) {
+            foreach($validated['gallery'] as $galleryImg) {
+                $galleryImgName = $galleryImg->hashName();
+                $filepath = 'public/books/galleries/';
+
+                $galleryImg->storeAs($filepath, $galleryImgName);
+                $galleryUrl = config('app.url') . '/storage/books/galleries/' . $galleryImgName;
+
+                $book->galleries()->create([
+                    'name' => $galleryImgName,
+                    'image_url' => $galleryUrl
+                ]);
+            }
+        }
+
         return redirect()->route('books.index')->with('success_message', 'Book has been updated!');
     }
 

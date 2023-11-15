@@ -13,7 +13,8 @@ class Gallery extends Model
         'book_id',
         'name',
         'description',
-        'image',
+        'gallery_seo',
+        'image_url',
     ];
 
     public function book()

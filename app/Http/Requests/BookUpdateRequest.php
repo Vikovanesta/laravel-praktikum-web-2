@@ -32,6 +32,8 @@ class BookUpdateRequest extends FormRequest
             'price' => 'integer|min:0',
             'page_count' => 'integer|min:0',
             'cover' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
+            'gallery' => 'array',
+            'gallery.*' => 'image|mimes:jpeg,png,jpg,webp|max:2048',
         ];
     }
 }
