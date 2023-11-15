@@ -131,9 +131,19 @@
 
 
                 <div class="row mb-3">
-                    <label for="image" class="col-md-4 col-form-label">Book's Cover</label>
-                    <input type="file" class="form-control-file" id="image" name="image">
-                    @error('image')
+                    <label for="cover" class="col-md-4 col-form-label">Book's Cover</label>
+                    <input type="file" class="file-input" id="cover" name="cover">
+                    @error('cover')
+                        {{-- <span class="invalid-feedback" role="alert"> --}}
+                            <strong>{{ $message }}</strong>
+                        {{-- </span> --}}
+                    @enderror
+                </div>
+
+                <div class="row mb-3">
+                    <label for="gallery" class="col-md-4 col-form-label">Book's Gallery</label>
+                    <input type="file" class="file-input" id="gallery" name="gallery" multiple>
+                    @error('gallery')
                         {{-- <span class="invalid-feedback" role="alert"> --}}
                             <strong>{{ $message }}</strong>
                         {{-- </span> --}}

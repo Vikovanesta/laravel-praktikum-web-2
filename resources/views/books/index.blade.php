@@ -40,28 +40,29 @@
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py-3">No</th>
-                        <th scope="col" class="px-6 py-3">Title</th>
-                        <th scope="col" class="px-6 py-3">Author</th>
-                        <th scope="col" class="px-6 py-3">Price</th>
-                        <th scope="col" class="px-6 py-3">Date Published</th>
-                        <th scope="col" class="px-6 py-3">Publisher</th>
-                        <th scope="col" class="px-6 py-3">Page Count</th>
-                        <th scope="col" class="px-6 py-3">Action</th>
+                        <th scope="col" class="px-5 py-3 text-center">No</th>
+                        <th scope="col" class="px-5 py-3 text-center">Title</th>
+                        <th scope="col" class="px-5 py-3 text-center">Author</th>
+                        <th scope="col" class="px-5 py-3 text-center">Price</th>
+                        <th scope="col" class="px-5 py-3 text-center">Date Published</th>
+                        <th scope="col" class="px-5 py-3 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($books as $book)
                         <tr>
                             <td scope="row" class="px-6 py-4">{{ ++$no }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $book->title }}</td>
-                            <td class="px-6 py-4">{{ $book->author }}</td>
-                            <td class="px-6 py-4">{{ "Rp ".number_format($book->price, 2, ',', '.') }}</td>
-                            <td class="px-6 py-4">{{ $book->date_published->format('d/m/Y') }}</td>
-                            <td class="px-6 py-4">{{ $book->publisher }}</td>
-                            <td class="px-6 py-4">{{ $book->page_count }}</td>
-                            <td class="px-6 py-4">
-                                <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="flex gap-1">
+                            <td class="px-5 py-4 flex flex-col items-center">
+                                <span class="font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white py-2">
+                                    {{ $book->title }}
+                                </span>
+                                <img src="{{ $book->cover_url }}" alt="book cover">
+                            </td>
+                            <td class="px-5 py-4">{{ $book->author }}</td>
+                            <td class="px-5 py-4">{{ "Rp ".number_format($book->price, 2, ',', '.') }}</td>
+                            <td class="px-5 py-4">{{ $book->date_published->format('d F Y') }}</td>
+                            <td class="px-5 py-4">
+                                <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="flex gap-1 justify-center">
                                     @csrf
                                     @method('delete')
                                     <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Detail</a>

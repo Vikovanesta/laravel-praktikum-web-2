@@ -23,4 +23,9 @@ class Book extends Model
         'page_count',
         'cover_url'
     ];
+
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }   
 }

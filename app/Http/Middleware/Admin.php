@@ -15,7 +15,8 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()->role !== 'admin') {
-            return redirect()->back()->with('error', 'Only admin can do that bruh');
+            return redirect()->back()
+                ->with('error', 'Only admin can do that bruh');
         }
 
         return $next($request);
