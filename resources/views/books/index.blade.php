@@ -8,7 +8,9 @@
         <h3 class="text-center text-3xl dark:text-white">price total: {{ "Rp ".number_format($priceSum, 2, ',', '.') }}</h3>
         <div class="flex flex-col justify-center items-center">
             <div class="my-4 self-center">
-                <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
+                @if (Auth::user()->role ?? 'guest' == 'admin')
+                    <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
+                @endif
             </div>
             @if (Session::has('success_message'))
                 <div class="alert alert-success text-center mt-3 w-fit">{{ Session::get('success_message') }}</div>
@@ -62,13 +64,17 @@
                             <td class="px-5 py-4">{{ "Rp ".number_format($book->price, 2, ',', '.') }}</td>
                             <td class="px-5 py-4">{{ $book->date_published->format('d F Y') }}</td>
                             <td class="px-5 py-4">
-                                <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="flex gap-1 justify-center">
-                                    @csrf
-                                    @method('delete')
+                                @if (Auth::user()->role ?? 'guest' == 'admin')
+                                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="flex gap-1 justify-center">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('books.edit', $book->id) }}" class="btn btn-success">Edit</a>
+                                        <button type="submit" class="btn bg-red-500 hover:bg-red-600 text-white" onclick="return confirm('Are you sure?')">Delete</button>
+                                    </form>
+                                 @else
                                     <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Detail</a>
-                                    <a href="{{ route('books.edit', $book->id) }}" class="btn btn-success">Edit</a>
-                                    <button type="submit" class="btn bg-red-500 hover:bg-red-600 text-white" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

@@ -37,13 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/books', [BookController::class, 'index'])->name('books.index');
-    Route::get('/books/search', [BookController::class, 'search'])->name('books.search');
-    Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 });
 
-// Route::resource('books', BookController::class)->middleware(['auth','admin']);
-
+Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::get('/books/search', [BookController::class, 'search'])->name('books.search');
+Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 
 Route::get('/character',[CharactersController::class, 'index']);
 
