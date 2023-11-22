@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('book_seo');
             $table->string('author')->nullable()->default('Unknown');
             $table->text('description')->nullable()->default('No description available.');
             $table->string('publisher')->nullable()->default('Unknown');

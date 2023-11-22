@@ -16,8 +16,12 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->realText(30);
+        $book_seo = \Illuminate\Support\Str::slug($title, '-');
+
         return [
-            'title' => $this->faker->realText(30),
+            'title' => $title,
+            'book_seo' => $book_seo,
             'author' => $this->faker->name(),
             'description' => $this->faker->realText(200),
             'date_published' => $this->faker->date(),

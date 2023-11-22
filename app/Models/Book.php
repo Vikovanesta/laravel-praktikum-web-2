@@ -15,6 +15,7 @@ class Book extends Model
 
     protected $fillable = [
         'title',
+        'book_seo', // 'book_seo' is the slug of the book title
         'author',
         'description',
         'publisher',

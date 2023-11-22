@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -66,6 +67,8 @@ class BookController extends Controller
             'page_count' => [Rule::excludeIf($request->page_count == null), 'integer', 'min:0'],
         ]);
 
+        $data['book_seo'] = Str::slug($data['title'], '-');
+
         Book::create($data);
         
         return redirect()->route('books.index')->with('success_message', 'Book has been added!');
@@ -74,12 +77,11 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book)
+    public function show($url_parameter)
     {
-        $book = Book::find($book->id);
+        $book = Book::where('book_seo', $url_parameter)->firstOrFail();
         return view('books.show', compact('book'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -106,6 +108,7 @@ class BookController extends Controller
             'description' => $validated['description'] ?? $book->description,
             'price' => $validated['price'] ?? $book->price,
             'page_count' => $validated['page_count'] ?? $book->page_count,
+            'book_seo' => Str::slug($validated['title'], '-') ?? $book->book_seo,
         ]);
 
         if(isset($validated['cover'])) {

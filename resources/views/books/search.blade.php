@@ -65,7 +65,7 @@
                                     <form action="{{ route('books.destroy', $book->id) }}" method="POST" class="flex gap-1">
                                         @csrf
                                         @method('delete')
-                                        <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Detail</a>
+                                        <a href="{{ route('books.show', $book->book_seo) }}" class="btn btn-primary">Detail</a>
                                         <a href="{{ route('books.edit', $book->id) }}" class="btn btn-success">Edit</a>
                                         <button type="submit" class="btn bg-red-500 hover:bg-red-600 text-white" onclick="return confirm('Are you sure?')">Delete</button>
                                     </form>
