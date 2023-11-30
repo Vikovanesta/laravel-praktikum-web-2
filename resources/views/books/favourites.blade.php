@@ -43,6 +43,11 @@
                             </td>
                         </tr>
                     @endforeach
+                    @if (count($books) == 0)
+                        <tr>
+                            <td colspan="6" class="px-5 py-3 text-lg font-bold text-center">You don't have a favorite book</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
             <div class="flex justify-center">

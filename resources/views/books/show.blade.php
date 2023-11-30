@@ -64,7 +64,7 @@
                             <div class="mr-2">
                                 <!-- Display stars based on the average rating -->
                                 <div class="flex text-yellow-400 text-3xl">
-                                    @for ($i = 0; $i < floor($book->averageRating()); $i++)
+                                    @for ($i = 0; $i < floor($book->ratings->avg('rating')); $i++)
                                         <svg class="h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
                                             <defs>
                                                 <linearGradient id="fullstar">
@@ -75,7 +75,7 @@
                                         </svg>
                                     @endfor
                                     <!-- If the rating has a decimal part, display a half star -->
-                                    @if ($book->averageRating() - floor($book->averageRating()) > 0)
+                                    @if ($book->ratings->avg('rating') - floor($book->ratings->avg('rating')) > 0)
                                         <svg class="h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
                                             <defs>
                                                 <linearGradient id="halfstar">
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <!-- Display the average rating value -->
-                            <span class="text-gray-600 text-2xl">{{ $book->averageRating() }}</span>
+                            <span class="text-gray-600 text-2xl dark:text-white">{{ number_format($book->ratings->avg('rating'), 2) }}</span>
                         </div>
                     </div>
                     {{-- @foreach ($book->ratings as $rating)

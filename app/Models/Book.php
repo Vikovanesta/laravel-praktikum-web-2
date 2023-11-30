@@ -30,16 +30,6 @@ class Book extends Model
         return $this->favouriteUsers->contains($user);
     }
 
-    public function averageRating()
-    {
-        return ($this->ratings->where('rating', 1)->count() * 1 +
-            $this->ratings->where('rating', 2)->count() * 2 +
-            $this->ratings->where('rating', 3)->count() * 3 +
-            $this->ratings->where('rating', 4)->count() * 4 +
-            $this->ratings->where('rating', 5)->count() * 5) /
-            $this->ratings->count();
-    }
-
     public function galleries()
     {
         return $this->hasMany(Gallery::class);
