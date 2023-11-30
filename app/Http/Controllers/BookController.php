@@ -155,4 +155,24 @@ class BookController extends Controller
         $book->delete();
         return redirect()->route('books.index')->with('delete_message', 'Book has been deleted!');
     }
+
+    public function rate(Request $request, Book $book)
+    {
+        $user = auth()->user();
+
+        $rating = $book->ratings()->where('user_id', $user->id)->first();
+
+        if($rating) {
+            $rating->update([
+                'rating' => $request->rating
+            ]);
+        } else {
+            $book->ratings()->create([
+                'user_id' => $user->id,
+                'rating' => $request->rating
+            ]);
+        }
+
+        return redirect()->back()->with('success_message', 'Thank you for your rating!');
+    }
 }
