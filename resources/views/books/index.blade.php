@@ -12,6 +12,7 @@
                     <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
                 @endif
             </div>
+            <a href="{{ route('books.indexFavourites') }}" class="btn bg-red-500 hover:bg-red-600 text-white">My Favorite Books</a>
             @if (Session::has('success_message'))
                 <div class="alert alert-success text-center mt-3 w-fit">{{ Session::get('success_message') }}</div>
             @elseif (Session::has('delete_message'))
@@ -73,7 +74,7 @@
                                         <button type="submit" class="btn bg-red-500 hover:bg-red-600 text-white" onclick="return confirm('Are you sure?')">Delete</button>
                                     </form>
                                  @else
-                                    <a href="{{ route('books.show', $book->id) }}" class="btn btn-primary">Detail</a>
+                                    <a href="{{ route('books.show', $book->book_seo) }}" class="btn btn-primary">Detail</a>
                                 @endif
                             </td>
                         </tr>

@@ -26,6 +26,17 @@ class BookController extends Controller
         return view('books.index', compact('books', 'no', 'bookCount', 'priceSum'));
     }
 
+    public function indexFavourites()
+    {
+        $pageSize = 10;
+        $books = auth()->user()->favouriteBooks()->orderBy('id', 'desc')->paginate($pageSize);
+        $no = $pageSize * ($books->currentPage() - 1);
+        $bookCount = auth()->user()->favouriteBooks()->count();
+        $priceSum = auth()->user()->favouriteBooks()->sum('price');
+
+        return view('books.favourites', compact('books', 'no', 'bookCount', 'priceSum'));
+    }
+
     public function search(Request $request)
     {
         $search = $request->search;
@@ -158,21 +169,41 @@ class BookController extends Controller
 
     public function rate(Request $request, Book $book)
     {
+        $validated = $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'nullable|string|max:255'
+        ]);
+
         $user = auth()->user();
 
         $rating = $book->ratings()->where('user_id', $user->id)->first();
 
         if($rating) {
             $rating->update([
-                'rating' => $request->rating
+                'rating' => $validated['rating'],
+                'comment' => $validated['comment']
             ]);
         } else {
             $book->ratings()->create([
                 'user_id' => $user->id,
-                'rating' => $request->rating
+                'rating' => $validated['rating'],
+                'comment' => $validated['comment']
             ]);
         }
 
         return redirect()->back()->with('success_message', 'Thank you for your rating!');
+    }
+
+    public function favourite(Request $request)
+    {
+        $validated = $request->validate([
+            'book_id' => 'required|integer'
+        ]);
+
+        $user = auth()->user();
+
+        $user->favouriteBooks()->toggle($validated['book_id']);
+
+        return redirect()->back()->with('success_message', 'Book has been added to your favourite list!');
     }
 }

@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/books/{book}/ratings', [BookController::class, 'rate'])->name('books.rate');
+    Route::get('/books/myfavourites', [BookController::class, 'indexFavourites'])->name('books.indexFavourites');
+    Route::put('/books/myfavourites', [BookController::class, 'favourite'])->name('books.toggleFavourite');
 });
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');

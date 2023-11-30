@@ -25,6 +25,11 @@ class Book extends Model
         'cover_url'
     ];
 
+    public function isBookFavouritedByUser($user)
+    {
+        return $this->favouriteUsers->contains($user);
+    }
+
     public function averageRating()
     {
         return ($this->ratings->where('rating', 1)->count() * 1 +
@@ -43,5 +48,10 @@ class Book extends Model
     public function ratings()
     {
         return $this->hasMany(Rating::class);
+    }
+
+    public function favouriteUsers()
+    {
+        return $this->belongsToMany(User::class, 'favourite_book');
     }
 }
