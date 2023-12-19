@@ -37,6 +37,19 @@ class BookController extends Controller
         return view('books.favourites', compact('books', 'no', 'bookCount', 'priceSum'));
     }
 
+    public function indexPopular()
+    {
+        $limit = 10;
+        $allBooks = Book::all();
+        $books = $allBooks->sortByDesc(function ($book) {
+            // dd($book);
+            return $book->ratings->avg('rating');
+        })->take($limit);
+        $no = 1;
+
+        return view('books.popular', compact('books', 'no'));
+    }
+
     public function search(Request $request)
     {
         $search = $request->search;

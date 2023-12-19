@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/search', [BookController::class, 'search'])->name('books.search');
+Route::get('/books/popular', [BookController::class, 'indexPopular'])->name('books.indexPopular');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 
 Route::get('/character',[CharactersController::class, 'index']);

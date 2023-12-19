@@ -12,7 +12,10 @@
                     <a href="{{ route('books.create') }}" class="btn btn-primary">Add New Book</a>
                 @endif
             </div>
+
+            <a href="{{ route('books.indexPopular') }}" class="btn bg-green-500 hover:bg-green-600 text-white mb-4">Most Popular Book</a>
             <a href="{{ route('books.indexFavourites') }}" class="btn bg-red-500 hover:bg-red-600 text-white">My Favorite Books</a>
+            
             @if (Session::has('success_message'))
                 <div class="alert alert-success text-center mt-3 w-fit">{{ Session::get('success_message') }}</div>
             @elseif (Session::has('delete_message'))
