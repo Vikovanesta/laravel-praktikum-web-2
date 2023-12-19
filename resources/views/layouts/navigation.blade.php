@@ -23,6 +23,13 @@
                         {{ __('Books') }}
                     </x-nav-link>
                 </div>
+                @if ((Auth::user()->role ?? 'guest') == 'admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('book-categories.index')" :active="request()->routeIs('book-categories.index')">
+                            {{ __('Book-Categories') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

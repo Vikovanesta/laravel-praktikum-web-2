@@ -92,5 +92,9 @@ class DatabaseSeeder extends Seeder
                 'role' => 'user',
             ]
         );
+
+        $this->call(
+            BookCategorySeeder::class
+        );
     }
 }

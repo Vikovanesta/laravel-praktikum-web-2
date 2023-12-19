@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookUpdateRequest;
 use App\Models\Book;
+use App\Models\BookCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -22,8 +23,9 @@ class BookController extends Controller
         $no = $pageSize * ($books->currentPage() - 1);
         $bookCount = Book::count();
         $priceSum = Book::sum('price');
+        $bookCategories = BookCategory::all();
 
-        return view('books.index', compact('books', 'no', 'bookCount', 'priceSum'));
+        return view('books.index', compact('books', 'no', 'bookCount', 'priceSum', 'bookCategories'));
     }
 
     public function indexFavourites()
@@ -104,7 +106,8 @@ class BookController extends Controller
     public function show($url_parameter)
     {
         $book = Book::where('book_seo', $url_parameter)->firstOrFail();
-        return view('books.show', compact('book'));
+        $bookCategories = BookCategory::all();
+        return view('books.show', compact('book', 'bookCategories'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -218,5 +221,19 @@ class BookController extends Controller
         $user->favouriteBooks()->toggle($validated['book_id']);
 
         return redirect()->back()->with('success_message', 'Book has been added to your favourite list!');
+    }
+
+    public function toggleCategory(Request $request)
+    {
+        $validated = $request->validate([
+            'book_id' => 'required|integer',
+            'category_id' => 'required|integer'
+        ]);
+
+        $book = Book::find($validated['book_id']);
+
+        $book->categories()->toggle($validated['category_id']);
+
+        return redirect()->back()->with('success_message', 'Book category has been added to the book!');
     }
 }

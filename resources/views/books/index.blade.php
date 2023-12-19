@@ -41,6 +41,26 @@
                        style="width: 30%;">
             </div>
         </form>
+
+        <div class="relative inline-flex mb-4">
+            <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" 
+                 xmlns="http://www.w3.org/2000/svg" 
+                 viewBox="0 0 412 232">
+                <path 
+                    d="M412 0L206 232 0 0h137l69 104 69-104h137z" 
+                    fill="#374151"/>
+            </svg>
+            <select class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                    name="category" 
+                    id="category"
+                    onchange="location = this.value;">
+                <option value="{{ route('books.index') }}">All</option>
+                @foreach ($bookCategories as $category)
+                    <option value="{{ route('books.index', ['category' => $category->id]) }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
     
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

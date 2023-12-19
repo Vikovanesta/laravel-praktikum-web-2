@@ -10,6 +10,14 @@
                     <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $book->title }}</h2>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $book->description }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Author: {{ $book->author }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Category: 
+                        @if ($book->categories->count() == 0)
+                            None
+                        @endif
+                        @foreach ($book->categories as $category)
+                            {{ $category->name }}{{ $loop->last ? '' : ', ' }}
+                        @endforeach
+                    </p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Date Published: {{ $book->date_published->format('d F Y') }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Publisher: {{ $book->publisher }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Page Count: {{ $book->page_count }}</p>
@@ -21,6 +29,24 @@
                         ])
                         <a href="{{ url()->previous() }}" class="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mx-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-24">Back</a>
                     </div>
+                    @if (Auth::user()->role ?? 'guest' == 'admin')
+                        <div class="flex justify-between">
+                            <form action="{{ route('books.toggleCategory') }}" method="POST" class="flex gap-1 justify-center">
+                                @method('PUT')
+                                @csrf
+
+                                <input type="hidden" name="book_id" value="{{ $book->id }}">
+
+                                <select name="category_id" id="category_id" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    @foreach ($bookCategories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-primary">Toggle Category</button>
+                            </form>
+
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -52,7 +78,7 @@
             @endif
         </div>
 
-        <h1 class="text-center m-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Rating</h1>
+        <h1 class="text-center m-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Review</h1>
         <div class="flex flex-col justify-center items-center">
             @if ($book->ratings->count() > 0)
                 <div class="flex justify-center gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" 
