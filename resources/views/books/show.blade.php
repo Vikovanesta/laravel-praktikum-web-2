@@ -117,16 +117,16 @@
                             <!-- Display the average rating value -->
                             <span class="text-gray-600 text-2xl dark:text-white">{{ number_format($book->ratings->avg('rating'), 2) }}</span>
                         </div>
-                    </div>
-                    {{-- @foreach ($book->ratings as $rating)
-                        <div class="grid grid-item gap-4">
-                            <div>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Rating: {{ $rating->rating }}</p>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Comment: {{ $rating->comment }}</p>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">User: {{ $rating->user->name }}</p>
+                        @foreach ($book->ratings as $rating)
+                            <div class="grid grid-item gap-4">
+                                <div>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Rating: {{ $rating->rating }}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Comment: {{ $rating->comment }}</p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">User: {{ $rating->user->name }}</p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach --}}
+                        @endforeach
+                    </div>
                 </div>
             @else
                 <div class="flex justify-center bg-white border border-gray-200 rounded-lg shadow max-h-96 md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" style="min-width: 70%">
